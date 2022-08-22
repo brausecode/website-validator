@@ -64,12 +64,29 @@ namespace WebsiteValidator.BL.Classes
                         .ExtractUrls()
                         .ToAbsoluteUrls(_baseUrl);
 
+                    // wir wollen nicht den Inhalt von JPG/PDF/etc. Dateien im JSON haben
+                    string bereinigterRawContent = download.Result.RawContent;
+                    if (   nextUrl.EndsWith(".jpg")
+                        || nextUrl.EndsWith(".jpeg")
+                        || nextUrl.EndsWith(".png")
+                        || nextUrl.EndsWith(".webp")
+                        || nextUrl.EndsWith(".pdf")
+                        || nextUrl.EndsWith(".mp3")
+                        || nextUrl.EndsWith(".m4r")
+                        || nextUrl.EndsWith(".exe")
+                        || nextUrl.EndsWith(".zip")
+                        || nextUrl.EndsWith(".svg")
+                        || nextUrl.EndsWith(".ico")
+                       )
+                    {
+                        bereinigterRawContent = "";
+                    }
                     _scrapeResults.Add(new UrlInformation(
                         nextUrl, 
                         links, 
                         download.Result.HttpCode,
-                        download.Result.RawContent,
-                        ExtractInnerText(download.Result.RawContent),
+                        bereinigterRawContent,
+                        ExtractInnerText(bereinigterRawContent),
                         download.Result.RawContent.Length
                         ));
                     

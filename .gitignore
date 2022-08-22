@@ -11,3 +11,8 @@
 
 /Source/WebsiteValidator/Properties
 /Source/.idea
+/Source/WebsiteValidator.BL/Properties/launchSettings.json
+/Configuration.cfg
+/Source/WebsiteValidator.BL/Properties/PublishProfiles/FolderProfile.pubxml.user
+/Source/WebsiteValidator.BL/WebsiteValidator.BL.csproj.user
+/Source/WebsiteValidator/WebsiteValidator.csproj.user
